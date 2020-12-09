@@ -15,11 +15,15 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->string('unit_oib', 11)->unique();
+            $table->string('unit_name');
+            
+            $table->foreignId('material_supplier_id')->constrained();
+            $table->foreignId('supplier_id')->constrained();
+            $table->foreignId('material_consumption_id')->constrained();
+            $table->foreignId('location_id')->constrained();
+            
+            /* created_at, updated_at */
             $table->timestamps();
         });
     }
