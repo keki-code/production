@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\CountyController;
+use App\Http\Controllers\Material_ConsumptionsController;
+use App\Http\Controllers\SupplierController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,3 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('counties', CountyController::class);
+Route::resource('material_consumptions', Material_ConsumptionsController::class);
+Route::resource('supplier', SupplierController::class);

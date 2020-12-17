@@ -17,6 +17,7 @@ class CreateMaterialConsumptionsTable extends Migration
             $table->id();
             $table->string('material_consumption_type');
             $table->integer('material_consumption_amount');
+            
             $table->timestamps();
         });
     }
