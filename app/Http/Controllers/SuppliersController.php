@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\County;
+use App\Models\Suppliers;
 
-class CountyController extends Controller
+class SuppliersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class CountyController extends Controller
      */
     public function index()
     {
-        $counties = County::paginate();
-        dd($counties);
+        $suppliers = Suppliers::paginate();
+        return view('suppliers.index', compact('suppliers'));
     }
 
     /**
@@ -47,8 +47,8 @@ class CountyController extends Controller
      */
     public function show($id)
     {
-        $county = County::findOrFail($id);
-        dd($county);
+        $suppliers = Supplier::findOrFail($id);
+        dd($suppliers);
     }
 
     /**

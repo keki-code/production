@@ -14,8 +14,8 @@ class Material_ConsumptionsController extends Controller
      */
     public function index()
     {
-        $material_consumptions = Material_Consumptions::all();
-        dd($material_consumptions);
+        $material_consumptions = Material_Consumptions::paginate();
+        return view('material_consumptions.index', compact('material_consumptions'));
     }
 
     /**
