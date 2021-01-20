@@ -28,13 +28,13 @@
             <a class="nav-link" href="/users">Users</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/counties">Counties</a>
+            <a class="nav-link" href="{{ route('counties.index') }}">Counties</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/material_consumptions">Material Consumptions</a>
+            <a class="nav-link" href="{{ route('material_consumptions.index') }}">Material Consumptions</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/suppliers">Suppliers</a>
+            <a class="nav-link" href="{{ route('suppliers.index') }}">Suppliers</a>
           </li>
         </ul>
       </div>

@@ -24,3 +24,4 @@ Route::get('/', function () {
 Route::resource('counties', CountyController::class);
 Route::resource('material_consumptions', Material_ConsumptionsController::class);
 Route::resource('suppliers', SuppliersController::class);
+Route::resource('users', UserController::class);

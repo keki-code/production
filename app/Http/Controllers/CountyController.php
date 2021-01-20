@@ -25,7 +25,7 @@ class CountyController extends Controller
      */
     public function create()
     {
-        //
+        return view('counties.create');
     }
 
     /**
@@ -36,7 +36,11 @@ class CountyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'county_id' => 'required|unique:users|max:255',
+        ]);
+        $user = User::create($validated);
+        return view('counties.show', compact('county'));
     }
 
     /**
@@ -47,8 +51,15 @@ class CountyController extends Controller
      */
     public function show($id)
     {
+        $validated = $request->validate([
+            'county_name' => 'required|max:255',
+        ]);
+
         $county = County::findOrFail($id);
-        dd($county);
+        $county->fill($validated);
+        $county->save();
+
+        return view('counties.show', compact('county'));
     }
 
     /**
@@ -59,7 +70,8 @@ class CountyController extends Controller
      */
     public function edit($id)
     {
-        //
+        $county = County::findOrFail($id);
+        return view('counties.edit', compact('county'));
     }
 
     /**
@@ -82,6 +94,8 @@ class CountyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        County::destroy($id);
+
+        return redirect()->route('counties.index');
     }
 }

@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Material_Consumptions;
+use App\Models\User;
 
-class Material_ConsumptionsController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class Material_ConsumptionsController extends Controller
      */
     public function index()
     {
-        $material_consumptions = Material_Consumptions::paginate();
-        return view('material_consumptions.index', compact('material_consumptions'));
+        $users = Users::with(['suppliers', 'county'])->paginate();
+        return view('users.index', compact('users'));
     }
 
     /**
@@ -25,7 +25,7 @@ class Material_ConsumptionsController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.create');
     }
 
     /**
@@ -36,7 +36,12 @@ class Material_ConsumptionsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'unit_oib' => 'required|unique:users|max:255',
+            'unit_name' => 'required|unique:users|max:255',
+        ]);
+        $user = User::create($validated);
+        return view('users.show', compact('user'));
     }
 
     /**
@@ -47,8 +52,8 @@ class Material_ConsumptionsController extends Controller
      */
     public function show($id)
     {
-        $material_consumptions = Material_Consumptions::findOrFail($id);
-        return view('material_consumptions.show', compact('material_consumptions'));
+        $users = Users::with(['suppliers', 'county'])->findOrFail($id);
+        return view('users.show', compact('users', 'friends'));
     }
 
     /**
@@ -59,7 +64,11 @@ class Material_ConsumptionsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::findOrFail($id);
+        $suppliers = Role::pluck('name', 'id');
+        $counties = County::pluck('name', 'id');
+
+        return view('users.edit', compact('user', 'suppliers', 'counties'));
     }
 
     /**

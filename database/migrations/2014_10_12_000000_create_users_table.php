@@ -18,6 +18,10 @@ class CreateUsersTable extends Migration
             $table->string('unit_oib', 11)->unique();
             $table->string('unit_name');
             
+            $table->foreignId('county_id')
+                ->nullable()
+                ->constrained()
+                ->onDelete('set null');
             $table->foreignId('material_supplier_id')->constrained();
             $table->foreignId('supplier_id')->constrained();
             $table->foreignId('material_consumption_id')->constrained();
