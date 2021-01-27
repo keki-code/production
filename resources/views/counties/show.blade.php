@@ -11,7 +11,7 @@
     </ul>
 </div>
 
-<div class="btn-group" role="group" aria-label="Basic example">
+<div class="btn-group" role="group">
 <a class="btn btn-secondary" href="{{ route('counties.index') }}">Back</a>
 
 <a class="btn btn-primary" href="{{ route('counties.edit', ['county' => $county]) }}">Edit</a>
@@ -20,7 +20,7 @@
     <!-- CSRF token -->
     @csrf
     @method('DELETE')
-    <button type="submit" class="btn btn-danger">Delete</button>
+    <button type="submit" onclick="confirm('Are you sure?')" class="btn btn-danger">Delete</button>
 </form>
 </div>
 

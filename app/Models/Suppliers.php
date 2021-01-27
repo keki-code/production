@@ -16,4 +16,6 @@ class Suppliers extends Model
         'supplier_material_type'
 
     ];
+
+    public function users() { return $this->hasMany(User::class); }
 }
